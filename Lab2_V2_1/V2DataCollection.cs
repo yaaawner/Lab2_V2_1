@@ -79,5 +79,20 @@ namespace Lab2_V2_1
             return "Type: V2DataCollection Base: info " + Info + " freq " + Freq.ToString()
                     + " Count: " + dataItems.Count.ToString() + "\n" + ret;
         }
+
+        public override string ToLongString(string format)
+        {
+            string ret = "";
+
+            foreach (DataItem item in dataItems)
+            {
+                ret += (item.ToString(format) + " ");
+            }
+
+            return "Type: V2DataCollection Base: info " + Info + " freq " + Freq.ToString(format)
+                    + " Count: " + dataItems.Count.ToString(format) + "\n" + ret;
+
+            // Count.ToString(format)???
+        }
     }
 }

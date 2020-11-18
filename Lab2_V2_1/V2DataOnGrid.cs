@@ -15,6 +15,11 @@ namespace Lab2_V2_1
             Grids = new Grid1D[2] { ox, oy };
         }
 
+        public V2DataOnGrid(string filename)
+        {
+            // read from file
+        }
+
         public void initRandom(double minValue, double maxValue)
         {
             Node = new Complex[Grids[0].Num, Grids[1].Num];
@@ -108,6 +113,25 @@ namespace Lab2_V2_1
 
             return "Type: 2DataOnGrid Base: Info: " + Info + " Freq: " + Freq.ToString()
                  + " Ox: " + Grids[0].ToString() + " Oy: " + Grids[1].ToString() + "\n" + ret;
+        }
+
+        public override string ToLongString(string format)
+        {
+            string ret = "";
+
+            for (int i = 0; i < Grids[0].Num; i++)
+            {
+                for (int j = 0; j < Grids[1].Num; j++)
+                {
+                    ret = ret + (" (" + (Grids[0].Step * (i + 1)).ToString(format) + ", " 
+                              + (Grids[1].Step * (j + 1)).ToString(format)
+                              + ") Value: " + Node[i, j].ToString(format));
+                }
+                ret = ret + "\n";
+            }
+
+            return "Type: 2DataOnGrid Base: Info: " + Info + " Freq: " + Freq.ToString(format)
+                 + " Ox: " + Grids[0].ToString(format) + " Oy: " + Grids[1].ToString(format) + "\n" + ret;
         }
     }
 }

@@ -19,6 +19,13 @@ namespace Lab2_V2_1
             return "Vector: " + Vector.X.ToString() + " " + Vector.Y.ToString() + "\n" +
                    "Complex: " + Complex.ToString() + "\n";
         }
+
+        public string ToString(string format)
+        {
+            return "Vector: " + Vector.X.ToString(format) + " " + Vector.Y.ToString(format) + "\n" +
+                   "Complex: " + Complex.ToString(format);
+        }
+
     }
 
     struct Grid1D
@@ -36,6 +43,11 @@ namespace Lab2_V2_1
         {
             return "Step: " + Step.ToString() + "; Num: " + Num.ToString();
         }
+
+        public string ToString(string format)
+        {
+            return "Step: " + Step.ToString(format) + "; Num: " + Num.ToString(format);
+        }
     }
 
     abstract class V2Data
@@ -51,6 +63,7 @@ namespace Lab2_V2_1
 
         public abstract Complex[] NearAverage(float eps);
         public abstract string ToLongString();
+        public abstract string ToLongString(string format);
 
         public override string ToString()
         {
