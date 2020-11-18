@@ -77,6 +77,7 @@ namespace Lab2_V2_1
         static void Main(string[] args)
         {
             /* 1 */
+            /*
             Grid1D x = new Grid1D(10, 3);
             Grid1D y = new Grid1D(10, 3);
             V2DataOnGrid test = new V2DataOnGrid("test", 100, x, y);
@@ -93,7 +94,7 @@ namespace Lab2_V2_1
             mainCollection.AddDefaults();
             Console.WriteLine(mainCollection.ToString());
 
-            /* 3 */
+            /* 3 */ /*
             Complex[] c;
             int count = 1;
             foreach (V2Data item in mainCollection)
@@ -110,9 +111,10 @@ namespace Lab2_V2_1
                 count++;
             }
 
-            /* test remove */
+            /* test remove *//*
             mainCollection.Remove("data info2", 2);
             Console.WriteLine(mainCollection.ToString());
+            */
         }
     }
 }

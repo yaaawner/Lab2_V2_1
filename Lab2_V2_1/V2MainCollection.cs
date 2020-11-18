@@ -15,19 +15,6 @@ namespace Lab2_V2_1
             get { return v2Datas.Count; }
         }
 
-        public double Average
-        {
-            get { return v2Datas.Average(n => Math.Abs(n.Freq)); }
-        }
-
-        public IEnumerable<Vector2> v2
-        {
-            get
-            {
-
-            }
-        }
-
         public void Add(V2Data item)
         {
             v2Datas.Add(item);
@@ -105,5 +92,24 @@ namespace Lab2_V2_1
             }
             return ret;
         }
+
+        public double Average
+        {
+            get {
+                /*
+                var la = 0;
+                foreach (V2Data data in v2Datas)
+                {
+                    V2DataOnGrid buf = (V2DataOnGrid)data;
+                    buf.Iterator();
+                }
+                */
+                //List<V2DataOnGrid> buf_list = (List<V2DataOnGrid>)v2Datas;
+
+                var buf_list = from data in v2Datas select (V2DataCollection)data;
+                var iters = from buf in buf_list select buf.Iterator().Average(n => n.Complex.Real);
+                return iters.Average(); }
+        }
+        
     }
 }

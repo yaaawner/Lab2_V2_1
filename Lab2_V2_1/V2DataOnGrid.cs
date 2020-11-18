@@ -16,10 +16,10 @@ namespace Lab2_V2_1
             Grids = new Grid1D[2] { ox, oy };
         }
 
-        public V2DataOnGrid(string filename)
-        {
+        //public V2DataOnGrid(string filename)
+        //{
             // read from file
-        }
+        //}
 
         public void initRandom(double minValue, double maxValue)
         {
