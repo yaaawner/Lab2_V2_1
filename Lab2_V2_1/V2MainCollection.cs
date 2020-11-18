@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
+using System;
+using System.Numerics;
 
 namespace Lab2_V2_1
 {
@@ -10,6 +13,19 @@ namespace Lab2_V2_1
         public int Count
         {
             get { return v2Datas.Count; }
+        }
+
+        public double Average
+        {
+            get { return v2Datas.Average(n => Math.Abs(n.Freq)); }
+        }
+
+        public IEnumerable<Vector2> v2
+        {
+            get
+            {
+
+            }
         }
 
         public void Add(V2Data item)
