@@ -11,7 +11,7 @@ V2DataOnGrid:V2Data
    
  ____
 <V2Data>
-  <Info>"строка"</Info>       
+  <Info>""</Info>       
   <Freq></Freq>
 </V2Data>
 <Grid>
