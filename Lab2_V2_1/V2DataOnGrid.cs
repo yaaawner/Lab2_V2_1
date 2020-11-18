@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace Lab2_V2_1
@@ -42,7 +43,8 @@ namespace Lab2_V2_1
             {
                 for (int j = 0; j < val.Grids[1].Num; j++)
                 {
-                    ret.dataItems.Add(new DataItem(new Vector2((i + 1) * val.Grids[0].Step, (j + 1) * val.Grids[1].Step), val.Node[i, j]));
+                    ret.dataItems.Add(new DataItem(new Vector2((i + 1) * val.Grids[0].Step, 
+                        (j + 1) * val.Grids[1].Step), val.Node[i, j]));
                 }
             }
 
@@ -132,6 +134,18 @@ namespace Lab2_V2_1
 
             return "Type: 2DataOnGrid Base: Info: " + Info + " Freq: " + Freq.ToString(format)
                  + " Ox: " + Grids[0].ToString(format) + " Oy: " + Grids[1].ToString(format) + "\n" + ret;
+        }
+
+        public IEnumerable<DataItem> Iterator()
+        {
+            for (int i = 0; i < Grids[0].Num; i++)
+            {
+                for (int j = 0; j < Grids[1].Num; j++)
+                {
+                    yield return new DataItem(new Vector2((i + 1) * Grids[0].Step, (j + 1) * Grids[1].Step), 
+                                              Node[i, j]);
+                }
+            }
         }
     }
 }

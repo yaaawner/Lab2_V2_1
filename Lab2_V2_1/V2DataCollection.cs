@@ -94,5 +94,13 @@ namespace Lab2_V2_1
 
             // Count.ToString(format)???
         }
+
+        public IEnumerable<DataItem> Iterator()
+        {
+            foreach (DataItem item in dataItems)
+            {
+                yield return item;
+            }
+        }
     }
 }
