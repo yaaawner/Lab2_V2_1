@@ -79,5 +79,15 @@ namespace Lab2_V2_1
         {
             return ((IEnumerable)v2Datas).GetEnumerator();
         }
+
+        public string ToLongString(string format)
+        {
+            string ret = "";
+            foreach (V2Data data in v2Datas)
+            {
+                ret += (data.ToLongString(format) + '\n');
+            }
+            return ret;
+        }
     }
 }
