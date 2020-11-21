@@ -106,9 +106,39 @@ namespace Lab2_V2_1
                 */
                 //List<V2DataOnGrid> buf_list = (List<V2DataOnGrid>)v2Datas;
 
+                //var buf_list = from data in v2Datas select (V2DataCollection)data;
+                //var iters = from buf in buf_list select buf.Iterator().Average(n => n.Complex.Real);
+                //return iters.Average(); 
+
+                //var ret = from item in this.v2Datas where item is V2DataCollection select (V2DataCollection)item;
+
+                //var ret = from buf in (from data in v2Datas where data is V2DataCollection select (V2DataCollection)data) select buf.Iterator()
+
+                //List<DataItem> DI = (from item in v2Datas select (List<DataItem>)item);
+                //double ret = 
+
+                //IEnumerable<DataItem> buf_enum = ((IEnumerable<DataItem>)(from di in (from item in this.v2Datas select (V2DataCollection)item)
+                //select di));
+
+                //IEnumerable<DataItem> buf_enum = from d in (from item in this.v2Datas select (V2DataCollection)item) select d;
+
+                //var buf_list = from data in v2Datas select (V2DataCollection)data;
+                //IEnumerable<DataItem> DI = from buf in buf_list select (from d in buf.dataItems select d);
+
+                //from d in buf select d;
+                //IEnumerable<DataItem> di_list = from di in buf_list select di;
+
+                //double ret = di_list.Average()
+
+                //var ret = (from elem in (from item in this.v2Datas
+                //              where item is V2DataCollection
+                //             select (V2DataCollection)item)
+                //           from dti in elem select dti);
+
                 var buf_list = from data in v2Datas select (V2DataCollection)data;
-                var iters = from buf in buf_list select buf.Iterator().Average(n => n.Complex.Real);
-                return iters.Average(); }
+                var iters = from buf in buf_list select buf.Iterator().Sum(n => n.Complex.Magnitude);
+                return iters.Average();
+            }
         }
         
     }
