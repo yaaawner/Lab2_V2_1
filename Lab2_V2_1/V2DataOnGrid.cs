@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.IO;
 
 namespace Lab2_V2_1
 {
@@ -16,10 +17,53 @@ namespace Lab2_V2_1
             Grids = new Grid1D[2] { ox, oy };
         }
 
-        //public V2DataOnGrid(string filename)
-        //{
-            // read from file
-        //}
+        public V2DataOnGrid(string filename) : base()
+        {
+            //read from file
+
+            FileStream fs = null;
+            try 
+            {
+                fs = new FileStream(filename, FileMode.Open);
+                StreamReader reader = new StreamReader(fs);
+
+                Info = reader.ReadLine();
+                Freq = double.Parse(reader.ReadLine());
+                string[] str;
+                Grids = new Grid1D[2];
+
+                for (int i = 0; i < 2; i++)
+                {
+                    str = reader.ReadLine().Split(' ');
+                    Grids[i].Num = int.Parse(str[0]);
+                    Grids[i].Step = float.Parse(str[1]);
+                }
+
+                Node = new Complex[Grids[0].Num, Grids[1].Num];
+                string[] strnode;
+                string[] strcompl;
+
+                for (int i = 0; i < Grids[0].Num; i++)
+                {
+                    strnode = reader.ReadLine().Split(' ');
+                    for (int j = 0; j < Grids[1].Num; j++)
+                    {
+                        strcompl = strnode[i].Split(',');
+                        Node[i, j] = new Complex(double.Parse(strcompl[0]), double.Parse(strcompl[1]));
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (fs != null) fs.Close();
+            }
+        }
 
         public void initRandom(double minValue, double maxValue)
         {

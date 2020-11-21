@@ -61,6 +61,12 @@ namespace Lab2_V2_1
             Freq = freq;
         }
 
+        public V2Data()
+        {
+            Info = "info";
+            Freq = 100;
+        }
+
         public abstract Complex[] NearAverage(float eps);
         public abstract string ToLongString();
         public abstract string ToLongString(string format);
