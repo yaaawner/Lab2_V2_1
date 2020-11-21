@@ -106,15 +106,21 @@ namespace Lab2_V2_1
         public double Average
         {
             get {
-                var buf_list = from data in v2Datas
-                               where data is V2DataCollection
-                               select (V2DataCollection)data;
+                IEnumerable<DataItem> collection = from elem in (from data in v2Datas
+                                                                 where data is V2DataCollection
+                                                                 select (V2DataCollection)data)
+                                                   from item in elem
+                                                   select item;
 
-                var DI = from elem in buf_list 
-                         from item in elem.dataItems 
-                         select item;
+                IEnumerable<DataItem> grid = from elem in (from data in v2Datas
+                                                                 where data is V2DataOnGrid
+                                                                 select (V2DataOnGrid)data)
+                                                   from item in elem
+                                                   select item;
 
-                return DI.Average(n => n.Complex.Magnitude);
+                IEnumerable<DataItem> items = collection.Union(grid);
+
+                return items.Average(n => n.Complex.Magnitude);
             }
         }
 
@@ -124,20 +130,26 @@ namespace Lab2_V2_1
             {
                 double a = this.Average;
 
-                var buf_list = from data in v2Datas
-                               where data is V2DataCollection
-                               select (V2DataCollection)data;
+                IEnumerable<DataItem> collection = from elem in (from data in v2Datas
+                                                                 where data is V2DataCollection
+                                                                 select (V2DataCollection)data)
+                                                   from item in elem
+                                                   select item;
 
-                var DI = from elem in buf_list 
-                         from item in elem.dataItems 
-                         select item;
+                IEnumerable<DataItem> grid = from elem in (from data in v2Datas
+                                                           where data is V2DataOnGrid
+                                                           select (V2DataOnGrid)data)
+                                             from item in elem
+                                             select item;
 
-                var dif = from item in DI
+                IEnumerable<DataItem> items = collection.Union(grid);
+
+                var dif = from item in items
                           select Math.Abs(item.Complex.Magnitude - a);
 
                 double min = dif.Min();
 
-                var ret = from item in DI
+                var ret = from item in items
                           where Math.Abs(item.Complex.Magnitude - a) <= min + 0.01
                           select item;
 
@@ -148,15 +160,13 @@ namespace Lab2_V2_1
         public IEnumerable<Vector2> Vectors
         {
             get
-            {
-                var buf_list = from data in v2Datas
-                               where data is V2DataCollection
-                               select (V2DataCollection)data;
+            { 
 
-                return from elem in buf_list
-                       from item in elem.dataItems
+                return from elem in (from data in v2Datas
+                                     where data is V2DataCollection
+                                     select (V2DataCollection)data)
+                       from item in elem
                        select item.Vector;
-
             }
         }
     }

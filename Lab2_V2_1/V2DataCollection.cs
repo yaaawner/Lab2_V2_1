@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Numerics;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Lab2_V2_1
 {
-    class V2DataCollection : V2Data
+    class V2DataCollection : V2Data, IEnumerable<DataItem>
     {
         public List<DataItem> dataItems { get; set; }
 
@@ -93,12 +94,14 @@ namespace Lab2_V2_1
                     + " Count: " + dataItems.Count.ToString(format) + "\n" + ret;
         }
 
-        public IEnumerable<DataItem> Iterator()
+        public IEnumerator<DataItem> GetEnumerator()
         {
-            foreach (DataItem item in dataItems)
-            {
-                yield return item;
-            }
+            return ((IEnumerable<DataItem>)dataItems).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)dataItems).GetEnumerator();
         }
     }
 }

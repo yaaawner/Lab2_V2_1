@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.IO;
+using System.Collections;
 
 namespace Lab2_V2_1
 {
-    class V2DataOnGrid : V2Data
+    class V2DataOnGrid : V2Data, IEnumerable<DataItem>
     {
         public Grid1D[] Grids { get; set; }
         public Complex[,] Node { get; set; }
@@ -207,16 +208,35 @@ namespace Lab2_V2_1
                      + " Ox: " + Grids[0].ToString(format) + " Oy: " + Grids[1].ToString(format) + "\n" + ret;
         }
 
-        public IEnumerable<DataItem> Iterator()
+
+        public IEnumerator<DataItem> GetEnumerator()
         {
+            V2DataCollection ret = new V2DataCollection(Info, Freq);
+
             for (int i = 0; i < Grids[0].Num; i++)
             {
                 for (int j = 0; j < Grids[1].Num; j++)
                 {
-                    yield return new DataItem(new Vector2((i + 1) * Grids[0].Step, (j + 1) * Grids[1].Step), 
-                                              Node[i, j]);
+                    ret.dataItems.Add(new DataItem(new Vector2((i + 1) * Grids[0].Step,
+                        (j + 1) * Grids[1].Step), Node[i, j]));
                 }
             }
+            return ((IEnumerable<DataItem>)ret.dataItems).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            V2DataCollection ret = new V2DataCollection(Info, Freq);
+
+            for (int i = 0; i < Grids[0].Num; i++)
+            {
+                for (int j = 0; j < Grids[1].Num; j++)
+                {
+                    ret.dataItems.Add(new DataItem(new Vector2((i + 1) * Grids[0].Step,
+                        (j + 1) * Grids[1].Step), Node[i, j]));
+                }
+            }
+            return ((IEnumerable)ret.dataItems).GetEnumerator();
         }
     }
 }
