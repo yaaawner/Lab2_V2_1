@@ -21,6 +21,34 @@ namespace Lab2_V2_1
         {
             //read from file
 
+            /* ФОРМАТ ВХОДНОГО ФАЙЛА
+             * 1 строка - Info      - информация о таблице
+             * 2 строка - Freq      - значение частоты
+             * 3 строка - Grid1D Ox - значения Num и Step через пробел
+             * 4 строка - Grid1D Oy - значения Num и Step через пробел
+             * Я перепутала оси :( Извините
+             * 
+             * 5 строка и дальше - таблица
+             * Узел таблицы разделяется пробелом
+             * Поля комлексного числа (действительная и мнимая части) запятой
+             * 
+             * 
+             * 
+             * Файл нужно перенести в папку Debug !
+             */
+
+            /********* Пример входного файла *********/
+            /*
+             * Information
+             * 100
+             * 3 10
+             * 5 10
+             * 12,5 11,7 7,4 8,-7 1,1
+             * 2,-5 16,7 -2,4 8,-7 1,-1
+             * 1,5 1,7 7,-44 4,-1 1,1
+             * 
+             */
+
             FileStream fs = null;
             try 
             {
@@ -65,9 +93,12 @@ namespace Lab2_V2_1
             }
         }
 
+        
+
         public void initRandom(double minValue, double maxValue)
         {
             Node = new Complex[Grids[0].Num, Grids[1].Num];
+            //Console.WriteLine("init Random " + Grids[0].Num + Grids[1].Num);
             Random rnd = new Random();
 
             for (int i = 0; i < Grids[0].Num; i++)

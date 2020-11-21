@@ -45,8 +45,8 @@ namespace Lab2_V2_1
             Grid1D Ox = new Grid1D(10, 3);
             Grid1D Oy = new Grid1D(10, 3);
             v2Datas = new List<V2Data>();
-            V2DataOnGrid[] grid = new V2DataOnGrid[3];
-            V2DataCollection[] collections = new V2DataCollection[3];
+            V2DataOnGrid[] grid = new V2DataOnGrid[4];
+            V2DataCollection[] collections = new V2DataCollection[4];
 
             for (int i = 0; i < 3; i++)
             {
@@ -61,6 +61,19 @@ namespace Lab2_V2_1
                 v2Datas.Add(grid[i]);
                 v2Datas.Add(collections[i]);
             }
+
+            //
+            Grid1D nullOx = new Grid1D(0, 0);
+            Grid1D nullOy = new Grid1D(0, 0);
+
+            //Console.WriteLine("aaaaaaaaaaa");
+            grid[3] = new V2DataOnGrid("null", 100, nullOx, nullOy);
+            collections[3] = new V2DataCollection("null", 100);
+            grid[3].initRandom(0, 100);
+            collections[3].initRandom(0, 100, 100, 0, 100);
+            v2Datas.Add(grid[3]);
+            v2Datas.Add(collections[3]);
+
         }
 
         public override string ToString()
@@ -96,46 +109,9 @@ namespace Lab2_V2_1
         public double Average
         {
             get {
-                /*
-                var la = 0;
-                foreach (V2Data data in v2Datas)
-                {
-                    V2DataOnGrid buf = (V2DataOnGrid)data;
-                    buf.Iterator();
-                }
-                */
-                //List<V2DataOnGrid> buf_list = (List<V2DataOnGrid>)v2Datas;
-
-                //var buf_list = from data in v2Datas select (V2DataCollection)data;
-                //var iters = from buf in buf_list select buf.Iterator().Average(n => n.Complex.Real);
-                //return iters.Average(); 
-
-                //var ret = from item in this.v2Datas where item is V2DataCollection select (V2DataCollection)item;
-
-                //var ret = from buf in (from data in v2Datas where data is V2DataCollection select (V2DataCollection)data) select buf.Iterator()
-
-                //List<DataItem> DI = (from item in v2Datas select (List<DataItem>)item);
-                //double ret = 
-
-                //IEnumerable<DataItem> buf_enum = ((IEnumerable<DataItem>)(from di in (from item in this.v2Datas select (V2DataCollection)item)
-                //select di));
-
-                //IEnumerable<DataItem> buf_enum = from d in (from item in this.v2Datas select (V2DataCollection)item) select d;
-
-                //var buf_list = from data in v2Datas select (V2DataCollection)data;
-                //IEnumerable<DataItem> DI = from buf in buf_list select (from d in buf.dataItems select d);
-
-                //from d in buf select d;
-                //IEnumerable<DataItem> di_list = from di in buf_list select di;
-
-                //double ret = di_list.Average()
-
-                //var ret = (from elem in (from item in this.v2Datas
-                //              where item is V2DataCollection
-                //             select (V2DataCollection)item)
-                //           from dti in elem select dti);
-
-                var buf_list = from data in v2Datas select (V2DataCollection)data;
+                var buf_list = from data in v2Datas
+                               where data is V2DataCollection
+                               select (V2DataCollection)data;
                 //var iters = from buf in buf_list select buf.Iterator().Sum(n => n.Complex.Magnitude);
                 //return iters.Average();
 
@@ -150,31 +126,11 @@ namespace Lab2_V2_1
         {
             get
             {
-                /*
-                double a = this.Average;
-                var buf_list = from data in v2Datas select (V2DataCollection)data;
-                var iters = from buf in buf_list select buf.Iterator().Min(n => Math.Abs(n.Complex.Magnitude - a));
-                double mmin = iters.Min();
-                var ret = from buf in buf_list
-                          where Math.Abs(buf.Iterator().Min(n => Math.Abs(n.Complex.Magnitude - a) - mmin)) < 0.01
-                          select buf;
-
-                var ret2 = from dc in ret from i in dc.dataItems select i;
-
-
-                IEnumerable < DataItem > res =
-                    from elem in (from item in this.v2Datas
-                                  where item is V2DataCollection
-                                  select (V2DataCollection)item)
-                    from dti in elem
-                    select dti;
-
-                var DI = 
-                */
-
                 double a = this.Average;
 
-                var buf_list = from data in v2Datas select (V2DataCollection)data;
+                var buf_list = from data in v2Datas
+                               where data is V2DataCollection
+                               select (V2DataCollection)data;
 
                 var DI = from elem in buf_list from item in elem.dataItems select item;
 

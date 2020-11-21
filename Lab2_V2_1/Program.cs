@@ -82,45 +82,46 @@ namespace Lab2_V2_1
     {
         static void Main(string[] args)
         {
-            /* 1 */
-            /*
-            Grid1D x = new Grid1D(10, 3);
-            Grid1D y = new Grid1D(10, 3);
-            V2DataOnGrid test = new V2DataOnGrid("test", 100, x, y);
-            test.initRandom(0, 100);
-            Console.WriteLine(test.ToLongString());
-
-            //Console.WriteLine("\n\n ========== OPERATOR ========== \n\n");
-
-            V2DataCollection collection = (V2DataCollection)test;
-            Console.WriteLine(collection.ToLongString());
-
-            /* 2 */
-            V2MainCollection mainCollection = new V2MainCollection();
-            mainCollection.AddDefaults();
-            Console.WriteLine(mainCollection.ToString());
-
-            /* 3 */ /*
-            Complex[] c;
-            int count = 1;
-            foreach (V2Data item in mainCollection)
+            try
             {
-                Console.WriteLine("item " + count.ToString());
-                item.ToLongString();
-
-                c = item.NearAverage(10);
-                Console.WriteLine("average eps = 10");
-                for (int i = 0; i < c.Length; i++)
-                {
-                    Console.WriteLine(c[i].ToString());
-                }
-                count++;
+                /* 1 */
+                V2DataOnGrid grid = new V2DataOnGrid("inputfile.txt");
+                Console.WriteLine(grid.ToLongString("n"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
-            /* test remove *//*
-            mainCollection.Remove("data info2", 2);
-            Console.WriteLine(mainCollection.ToString());
-            */
+
+            /* 2 */
+            try
+            {
+                V2MainCollection mainCollection = new V2MainCollection();
+                mainCollection.AddDefaults();
+                Console.WriteLine(mainCollection.ToLongString("n"));
+
+                Console.WriteLine();
+                Console.WriteLine("Среднее значение модуля поля для всех результатов измерений в коллекции V2MainCollection");
+                Console.WriteLine(mainCollection.Average.ToString());
+
+                Console.WriteLine();
+                Console.WriteLine("Значение модуля поля ближе всего к среднему значению модуля поля среди всех результатов измерений.");
+                Console.WriteLine(mainCollection.NearAverage.ToString());
+
+                Console.WriteLine();
+                Console.WriteLine("Экземпляры Vector2 точки измерения поля, которые встречаются в каждом элементе типа V2DataCollection в коллекции V2MainCollection");
+                foreach (Vector2 v in mainCollection.Vectors)
+                {
+                    Console.WriteLine(v.ToString());
+                }
+                //Console.WriteLine(mainCollection.Vectors.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 }
