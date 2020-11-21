@@ -136,8 +136,41 @@ namespace Lab2_V2_1
                 //           from dti in elem select dti);
 
                 var buf_list = from data in v2Datas select (V2DataCollection)data;
-                var iters = from buf in buf_list select buf.Iterator().Sum(n => n.Complex.Magnitude);
-                return iters.Average();
+                //var iters = from buf in buf_list select buf.Iterator().Sum(n => n.Complex.Magnitude);
+                //return iters.Average();
+
+                var DI = from elem in buf_list from item in elem.dataItems select item;
+
+                return DI.Average(n => n.Complex.Magnitude);
+                         
+            }
+        }
+
+        public DataItem NearAverage
+        {
+            get
+            {
+                /*
+                double a = this.Average;
+                var buf_list = from data in v2Datas select (V2DataCollection)data;
+                var iters = from buf in buf_list select buf.Iterator().Min(n => Math.Abs(n.Complex.Magnitude - a));
+                double mmin = iters.Min();
+                var ret = from buf in buf_list
+                          where Math.Abs(buf.Iterator().Min(n => Math.Abs(n.Complex.Magnitude - a) - mmin)) < 0.01
+                          select buf;
+
+                var ret2 = from dc in ret from i in dc.dataItems select i;
+
+
+                IEnumerable < DataItem > res =
+                    from elem in (from item in this.v2Datas
+                                  where item is V2DataCollection
+                                  select (V2DataCollection)item)
+                    from dti in elem
+                    select dti;
+
+                var DI = 
+                */
             }
         }
         
