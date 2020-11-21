@@ -24,7 +24,6 @@ namespace Lab2_V2_1
              * 2 строка - Freq      - значение частоты
              * 3 строка - Grid1D Ox - значения Num и Step через пробел
              * 4 строка - Grid1D Oy - значения Num и Step через пробел
-             * Я перепутала оси :( Извините
              * 
              * 5 строка и дальше - таблица
              * Узел таблицы разделяется пробелом
@@ -74,7 +73,7 @@ namespace Lab2_V2_1
                     strnode = reader.ReadLine().Split(' ');
                     for (int j = 0; j < Grids[1].Num; j++)
                     {
-                        strcompl = strnode[i].Split(',');
+                        strcompl = strnode[j].Split(',');
                         Node[i, j] = new Complex(double.Parse(strcompl[0]), double.Parse(strcompl[1]));
                     }
                 }
