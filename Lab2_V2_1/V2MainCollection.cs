@@ -171,8 +171,40 @@ namespace Lab2_V2_1
 
                 var DI = 
                 */
+
+                double a = this.Average;
+
+                var buf_list = from data in v2Datas select (V2DataCollection)data;
+
+                var DI = from elem in buf_list from item in elem.dataItems select item;
+
+                var dif = from item in DI
+                          select Math.Abs(item.Complex.Magnitude - a);
+
+                double min = dif.Min();
+
+                var ret = from item in DI
+                          where Math.Abs(item.Complex.Magnitude - a) <= min + 0.01
+                          select item;
+
+                return ret.First();
+
             }
         }
-        
+
+        public IEnumerable<Vector2> Vectors
+        {
+            get
+            {
+                var buf_list = from data in v2Datas
+                               where data is V2DataCollection
+                               select (V2DataCollection)data;
+
+                return from elem in buf_list
+                       from item in elem.dataItems
+                       select item.Vector;
+
+            }
+        }
     }
 }
