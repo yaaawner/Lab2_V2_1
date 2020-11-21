@@ -62,18 +62,15 @@ namespace Lab2_V2_1
                 v2Datas.Add(collections[i]);
             }
 
-            //
             Grid1D nullOx = new Grid1D(0, 0);
             Grid1D nullOy = new Grid1D(0, 0);
-
-            //Console.WriteLine("aaaaaaaaaaa");
             grid[3] = new V2DataOnGrid("null", 100, nullOx, nullOy);
             collections[3] = new V2DataCollection("null", 100);
+
             grid[3].initRandom(0, 100);
             collections[3].initRandom(0, 100, 100, 0, 100);
             v2Datas.Add(grid[3]);
             v2Datas.Add(collections[3]);
-
         }
 
         public override string ToString()
@@ -112,13 +109,12 @@ namespace Lab2_V2_1
                 var buf_list = from data in v2Datas
                                where data is V2DataCollection
                                select (V2DataCollection)data;
-                //var iters = from buf in buf_list select buf.Iterator().Sum(n => n.Complex.Magnitude);
-                //return iters.Average();
 
-                var DI = from elem in buf_list from item in elem.dataItems select item;
+                var DI = from elem in buf_list 
+                         from item in elem.dataItems 
+                         select item;
 
                 return DI.Average(n => n.Complex.Magnitude);
-                         
             }
         }
 
@@ -132,7 +128,9 @@ namespace Lab2_V2_1
                                where data is V2DataCollection
                                select (V2DataCollection)data;
 
-                var DI = from elem in buf_list from item in elem.dataItems select item;
+                var DI = from elem in buf_list 
+                         from item in elem.dataItems 
+                         select item;
 
                 var dif = from item in DI
                           select Math.Abs(item.Complex.Magnitude - a);
@@ -144,7 +142,6 @@ namespace Lab2_V2_1
                           select item;
 
                 return ret.First();
-
             }
         }
 

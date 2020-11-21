@@ -91,8 +91,6 @@ namespace Lab2_V2_1
 
             return "Type: V2DataCollection Base: info " + Info + " freq " + Freq.ToString(format)
                     + " Count: " + dataItems.Count.ToString(format) + "\n" + ret;
-
-            // Count.ToString(format)???
         }
 
         public IEnumerable<DataItem> Iterator()

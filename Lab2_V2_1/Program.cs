@@ -82,9 +82,9 @@ namespace Lab2_V2_1
     {
         static void Main(string[] args)
         {
+            /* 1 */
             try
             {
-                /* 1 */
                 V2DataOnGrid grid = new V2DataOnGrid("inputfile.txt");
                 Console.WriteLine(grid.ToLongString("n"));
             }

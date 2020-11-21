@@ -19,8 +19,6 @@ namespace Lab2_V2_1
 
         public V2DataOnGrid(string filename) : base()
         {
-            //read from file
-
             /* ФОРМАТ ВХОДНОГО ФАЙЛА
              * 1 строка - Info      - информация о таблице
              * 2 строка - Freq      - значение частоты
@@ -98,7 +96,6 @@ namespace Lab2_V2_1
         public void initRandom(double minValue, double maxValue)
         {
             Node = new Complex[Grids[0].Num, Grids[1].Num];
-            //Console.WriteLine("init Random " + Grids[0].Num + Grids[1].Num);
             Random rnd = new Random();
 
             for (int i = 0; i < Grids[0].Num; i++)
@@ -200,15 +197,15 @@ namespace Lab2_V2_1
             {
                 for (int j = 0; j < Grids[1].Num; j++)
                 {
-                    ret = ret + (" (" + (Grids[0].Step * (i + 1)).ToString(format) + ", " 
+                    ret = ret + (" (" + (Grids[0].Step * (i + 1)).ToString(format) + ", "
                               + (Grids[1].Step * (j + 1)).ToString(format)
                               + ") Value: " + Node[i, j].ToString(format));
                 }
                 ret = ret + "\n";
-            }
-
+            } 
+            
             return "Type: 2DataOnGrid Base: Info: " + Info + " Freq: " + Freq.ToString(format)
-                 + " Ox: " + Grids[0].ToString(format) + " Oy: " + Grids[1].ToString(format) + "\n" + ret;
+                     + " Ox: " + Grids[0].ToString(format) + " Oy: " + Grids[1].ToString(format) + "\n" + ret;
         }
 
         public IEnumerable<DataItem> Iterator()
