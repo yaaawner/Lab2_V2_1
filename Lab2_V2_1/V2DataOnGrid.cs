@@ -180,7 +180,7 @@ namespace Lab2_V2_1
                 for (int j = 0; j < Grids[1].Num; j++)
                 {
                     ret = ret + (" (" + (Grids[0].Step * (i + 1)).ToString() + ", " + (Grids[1].Step * (j + 1)).ToString()
-                              + ") Value: " + Node[i, j].ToString());
+                              + ") Value: " + Node[i, j].ToString()) + "\n";
                 }
                 ret = ret + "\n";
             }
@@ -199,7 +199,7 @@ namespace Lab2_V2_1
                 {
                     ret = ret + (" (" + (Grids[0].Step * (i + 1)).ToString(format) + ", "
                               + (Grids[1].Step * (j + 1)).ToString(format)
-                              + ") Value: " + Node[i, j].ToString(format));
+                              + ") Value: " + Node[i, j].ToString(format)) + "\n";
                 }
                 ret = ret + "\n";
             } 

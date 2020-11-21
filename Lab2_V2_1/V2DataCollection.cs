@@ -73,7 +73,7 @@ namespace Lab2_V2_1
 
             foreach (DataItem item in dataItems)
             {
-                ret += (item.ToString() + " ");
+                ret += (item.ToString() + "\n");
             }
 
             return "Type: V2DataCollection Base: info " + Info + " freq " + Freq.ToString()
@@ -86,7 +86,7 @@ namespace Lab2_V2_1
 
             foreach (DataItem item in dataItems)
             {
-                ret += (item.ToString(format) + " ");
+                ret += (item.ToString(format) + "\n");
             }
 
             return "Type: V2DataCollection Base: info " + Info + " freq " + Freq.ToString(format)

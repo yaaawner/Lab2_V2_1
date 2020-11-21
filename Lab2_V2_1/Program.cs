@@ -16,13 +16,13 @@ namespace Lab2_V2_1
 
         public override string ToString()
         {
-            return "Vector: " + Vector.X.ToString() + " " + Vector.Y.ToString() + "\n" +
-                   "Complex: " + Complex.ToString() + "\n";
+            return "Vector: " + Vector.X.ToString() + " " + Vector.Y.ToString() + " " +
+                   "Complex: " + Complex.ToString();
         }
 
         public string ToString(string format)
         {
-            return "Vector: " + Vector.X.ToString(format) + " " + Vector.Y.ToString(format) + "\n" +
+            return "Vector: " + Vector.X.ToString(format) + " " + Vector.Y.ToString(format) + " " +
                    "Complex: " + Complex.ToString(format);
         }
 
@@ -115,7 +115,6 @@ namespace Lab2_V2_1
                 {
                     Console.WriteLine(v.ToString());
                 }
-                //Console.WriteLine(mainCollection.Vectors.ToString());
             }
             catch (Exception ex)
             {
