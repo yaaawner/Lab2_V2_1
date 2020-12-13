@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.IO;
 using System.Collections;
+using System.Globalization;
 
 namespace Lab2_V2_1
 {
@@ -28,11 +29,8 @@ namespace Lab2_V2_1
              * 
              * 5 строка и дальше - таблица
              * Узел таблицы разделяется пробелом
-             * Поля комлексного числа (действительная и мнимая части) запятой
+             * Поля комлексного числа (действительная и мнимая части) нижним подчеркиванием
              * 
-             * 
-             * 
-             * Файл нужно перенести в папку Debug !
              */
 
             /********* Пример входного файла *********/
@@ -41,28 +39,31 @@ namespace Lab2_V2_1
              * 100
              * 3 10
              * 5 10
-             * 12,5 11,7 7,4 8,-7 1,1
-             * 2,-5 16,7 -2,4 8,-7 1,-1
-             * 1,5 1,7 7,-44 4,-1 1,1
+             * 12,0_5,23 11,67_7,78 7,16_4,00 8,34_-7,55 1,09_1,09
+             * 2,44_-5,43 16,11_7,90 -2,33_4,55 8,76_-7,10 1,01_-1,40
+             * 1,67_5,29 1,10_7,36 7,18_-44,44 4,89_-1,10 1,09_1,34
              * 
              */
+            CultureInfo CIru = new CultureInfo("RU-ru");        // исправлена локализация
 
             FileStream fs = null;
             try 
             {
+                //Directory.SetCurrentDirectory()
+                Directory.SetCurrentDirectory("..\\..\\..\\");  // путь к исходным файлам проекта
                 fs = new FileStream(filename, FileMode.Open);
                 StreamReader reader = new StreamReader(fs);
 
                 Info = reader.ReadLine();
-                Freq = double.Parse(reader.ReadLine());
+                Freq = double.Parse(reader.ReadLine(), CIru);
                 string[] str;
                 Grids = new Grid1D[2];
 
                 for (int i = 0; i < 2; i++)
                 {
                     str = reader.ReadLine().Split(' ');
-                    Grids[i].Num = int.Parse(str[0]);
-                    Grids[i].Step = float.Parse(str[1]);
+                    Grids[i].Num = int.Parse(str[0], CIru);
+                    Grids[i].Step = float.Parse(str[1], CIru);
                 }
 
                 Node = new Complex[Grids[0].Num, Grids[1].Num];
@@ -74,8 +75,8 @@ namespace Lab2_V2_1
                     strnode = reader.ReadLine().Split(' ');
                     for (int j = 0; j < Grids[1].Num; j++)
                     {
-                        strcompl = strnode[j].Split(',');
-                        Node[i, j] = new Complex(double.Parse(strcompl[0]), double.Parse(strcompl[1]));
+                        strcompl = strnode[j].Split('_');               // исправлен разделитель
+                        Node[i, j] = new Complex(double.Parse(strcompl[0], CIru), double.Parse(strcompl[1], CIru));
                     }
                 }
 

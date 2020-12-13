@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.IO;
 
 namespace Lab2_V2_1
 {
@@ -93,6 +94,9 @@ namespace Lab2_V2_1
                 Console.WriteLine(ex.Message);
             }
 
+            //Console.WriteLine("========= DIRECTORY =========");
+            //Directory.SetCurrentDirectory("..\\..\\..\\");
+            //Console.WriteLine(Directory.GetCurrentDirectory());
 
             /* 2 */
             try

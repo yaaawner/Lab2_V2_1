@@ -150,9 +150,10 @@ namespace Lab2_V2_1
                 double min = dif.Min();
 
                 var ret = from item in items
-                          where Math.Abs(item.Complex.Magnitude - a) <= min + 0.01
+                          where Math.Abs(item.Complex.Magnitude - a) <= min
                           select item;
 
+                //Console.WriteLine(ret.First().Complex.Magnitude);
                 return ret.First();
             }
         }
