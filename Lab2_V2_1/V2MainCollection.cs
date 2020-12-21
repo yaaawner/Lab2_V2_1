@@ -40,6 +40,31 @@ namespace Lab2_V2_1
             return flag;
         }
 
+        public void AddTest()
+        {
+            Grid1D Ox = new Grid1D(10, 3);
+            Grid1D Oy = new Grid1D(10, 3);
+            v2Datas = new List<V2Data>();
+            V2DataOnGrid[] grid = new V2DataOnGrid[4];
+            V2DataCollection[] collections = new V2DataCollection[4];
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                grid[i] = new V2DataOnGrid("data info2"/*+ i.ToString()*/, 2, Ox, Oy);     // test i = 2
+                collections[i] = new V2DataCollection("collection info" + i.ToString(), i);
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                grid[i].initRandom(0, 100);
+                collections[i].initTest(4, 100, 100, 0, 100);
+                v2Datas.Add(grid[i]);
+                v2Datas.Add(collections[i]);
+            }
+
+        }
+
         public void AddDefaults()
         {
             Grid1D Ox = new Grid1D(10, 3);
@@ -161,13 +186,22 @@ namespace Lab2_V2_1
         public IEnumerable<Vector2> Vectors
         {
             get
-            { 
+            {
 
-                return from elem in (from data in v2Datas
-                                     where data is V2DataCollection
-                                     select (V2DataCollection)data)
-                       from item in elem
-                       select item.Vector;
+                var collections = from data in v2Datas
+                                  where data is V2DataCollection
+                                  select (V2DataCollection)data;
+
+                var first = collections.First();
+                var notfirst = collections.Skip(1);
+
+                var v = from elem in first
+                        from a in notfirst
+                        from elema in a
+                        where elema.Vector == elem.Vector
+                        select elem.Vector;
+
+                return v.Distinct();
             }
         }
     }

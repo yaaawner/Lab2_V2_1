@@ -30,6 +30,20 @@ namespace Lab2_V2_1
             }
         }
 
+        public void initTest(int nItems, float xmax, float ymax, double minValue, double maxValue)
+        {
+            dataItems = new List<DataItem>();
+            Random rnd = new Random();
+            for (int i = 0; i < nItems; i++)
+            {
+                dataItems.Add(new DataItem()
+                {
+                    Vector = new Vector2((float)1.23 * xmax, (float)1.23 * ymax),
+                    Complex = new Complex(rnd.NextDouble() * (maxValue - minValue), rnd.NextDouble() * (maxValue - minValue))
+                });
+            }
+        }
+
         public override Complex[] NearAverage(float eps)
         {
             int count = 0;

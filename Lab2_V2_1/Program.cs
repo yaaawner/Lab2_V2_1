@@ -113,6 +113,16 @@ namespace Lab2_V2_1
                 Console.WriteLine("Значение модуля поля ближе всего к среднему значению модуля поля среди всех результатов измерений:");
                 Console.WriteLine(mainCollection.NearAverage.ToString());
 
+                V2MainCollection testCollection = new V2MainCollection();
+                testCollection.AddTest();
+                Console.WriteLine();
+                Console.WriteLine("======= TEST =======");
+                Console.WriteLine("Экземпляры Vector2 точки измерения поля, которые встречаются в каждом элементе типа V2DataCollection в коллекции V2MainCollection:");
+                foreach (Vector2 v in testCollection.Vectors)
+                {
+                    Console.WriteLine(v.ToString());
+                }
+
                 Console.WriteLine();
                 Console.WriteLine("Экземпляры Vector2 точки измерения поля, которые встречаются в каждом элементе типа V2DataCollection в коллекции V2MainCollection:");
                 foreach (Vector2 v in mainCollection.Vectors)
